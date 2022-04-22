@@ -1,17 +1,22 @@
 "use strict";
 
-const contents = document.querySelectorAll('.program-line__content');
+const contents = document.querySelectorAll('.program-line__content');//находим все блоки с данным классом
 
+contents.forEach((elem) => { //перебор тайтлов
+  const title = elem.querySelector('.program-line__title');  
 
-contents.forEach((elem) =>{
-   const title = elem.querySelector('.program-line__title')
-   const descr = elem.querySelector('.program-line__descr')
+  title.addEventListener('click', () => {    //повесили слушатель событий (клик) на тайтл
 
-    title.addEventListener('click', () => {
-      descr.classList.toggle('active');
-   })
+    contents.forEach((elems) => { //перебор таргета
+      const descr = elems.querySelector('.program-line__descr');
+      descr.classList.remove('active'); //удаляем класс 
 
-   
+      if (elems == elem) {
+        descr.classList.toggle('active'); //добавили при событии
+      } 
 
-  
+    })
+
+  })
+
 })
